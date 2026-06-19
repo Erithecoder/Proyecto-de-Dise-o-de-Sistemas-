@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGCAT - Panel de Control</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-title">SGCAT <span>Soporte</span></h1>
+            <span class="mobile-role" id="movil-role">...</span>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <button onclick="cambiarVista('todos')" id="btn-panel-principal" class="nav-item">Panel Global</button>
+            <button onclick="cambiarVista('mis-tickets')" id="btn-mis-tickets" class="nav-item">Mis Tickets</button>
+            <a href="nuevo_ticket.html" class="nav-item">Reportar Falla</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <p class="user-name" id="sesion-nombre">...</p>
+                <p class="user-role" id="sesion-role">...</p>
+            </div>
+            <button onclick="cerrarSesion()" class="btn-logout">Salir &rarr;</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="main-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+            <h2 id="titulo-vista" style="margin: 0;">Tickets Recientes</h2>
+            <div class="header-actions">
+                <div class="toggle-container" onclick="alternarTema()">
+                    <div class="toggle-circle"></div>
+                </div>
+                <a href="nuevo_ticket.html" class="btn-primary" style="margin: 0;">+ Nuevo Ticket</a>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Asunto</th>
+                        <th>Creado por</th> 
+                        <th>Afectado</th>   
+                        <th>Clasificación IA</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-tickets"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

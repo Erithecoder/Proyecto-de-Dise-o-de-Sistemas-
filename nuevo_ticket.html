@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGCAT - Nuevo Ticket</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-title">SGCAT <span>Soporte</span></h1>
+            <span class="mobile-role" id="movil-role">...</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" id="btn-panel-principal" class="nav-item">Panel Global</a>
+            <a href="dashboard.html" class="nav-item">Mis Tickets</a>
+            <a href="#" class="nav-item active">Reportar Falla</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <p class="user-name" id="sesion-nombre">...</p>
+                <p class="user-role" id="sesion-role">...</p>
+            </div>
+            <button onclick="cerrarSesion()" class="btn-logout">Salir &rarr;</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div id="contenedor-formulario" class="card form-container">
+            <h2>Describa el Incidente</h2>
+            
+            <form id="form-ticket">
+                <div class="form-group">
+                    <label class="form-label">Resumen del problema (Título)</label>
+                    <input type="text" id="titulo" required class="form-input" placeholder="Ej. La pantalla no enciende">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Descripción detallada (Para clasificación de IA)</label>
+                    <textarea id="descripcion" rows="4" required class="form-input" placeholder="Detalle exactamente qué ocurrió..."></textarea>
+                    <p class="help-text">Nuestro motor de IA leerá este texto para categorizar automáticamente el incidente.</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">¿A quién afecta este problema?</label>
+                    <select id="afectado" class="form-input">
+                        <option id="opt-afectado" value=""></option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <a href="dashboard.html" class="btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn-primary" style="width: auto;">Enviar Ticket al Sistema</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

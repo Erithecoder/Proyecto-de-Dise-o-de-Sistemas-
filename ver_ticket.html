@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGCAT - Detalle del Ticket</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-title">SGCAT <span>Soporte</span></h1>
+            <span class="mobile-role" id="movil-role">...</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" id="btn-panel-principal" class="nav-item">Panel Global</a>
+            <a href="dashboard.html" class="nav-item">Mis Tickets</a>
+            <a href="nuevo_ticket.html" class="nav-item">Reportar Falla</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <p class="user-name" id="sesion-nombre">...</p>
+                <p class="user-role" id="sesion-role">...</p>
+            </div>
+            <button onclick="cerrarSesion()" class="btn-logout">Salir &rarr;</button>
+        </div>
+    </aside>
+
+    <main class="main-content" style="display: flex; flex-direction: column; align-items: center;">
+        <div style="width: 100%; max-width: 800px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+            <a href="dashboard.html" style="color: var(--primary-color); font-weight: 600; font-size: 0.875rem;">&larr; Volver al panel de control</a>
+            <div class="toggle-container" onclick="alternarTema()">
+                <div class="toggle-circle"></div>
+            </div>
+        </div>
+
+        <div id="contenedor-ticket" class="hidden" style="width: 100%;">
+            <div class="ticket-details-card">
+                <div class="ticket-header-flex">
+                    <h2 id="vista-titulo">Cargando...</h2>
+                    <span id="vista-estado" class="status-tag">Abierto</span>
+                </div>
+                
+                <div class="ticket-meta">
+                    <p><strong>Ticket ID:</strong> <span id="vista-id" style="font-family: monospace;"></span></p>
+                    <p><strong>Creado por:</strong> <span id="vista-creador"></span></p>
+                    <p><strong>Usuario Afectado:</strong> <span id="vista-afectado"></span></p>
+                </div>
+                
+                <h3 style="font-size: 1rem; color: #334155;">Descripción detallada:</h3>
+                <p id="vista-descripcion" class="ticket-desc-box"></p>
+            </div>
+
+            <div class="ai-diagnostic-box">
+                <div class="ai-title">
+                    <svg style="width: 20px; height: 20px; color: #4f46e5;" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 9V5h2v4H9zm0 4v-2h2v2H9z"></path>
+                    </svg>
+                    Análisis Automatizado del Motor NLP
+                </div>
+                
+                <div style="margin-bottom: 8px;">
+                    <p style="font-size: 0.875rem; font-weight: 600; color: #312e81; margin-bottom: 8px;">Categoría IA:</p>
+                    <span id="vista-categoria" class="badge">Analizando...</span>
+                </div>
+                
+                <div class="ai-suggestion-inner">
+                    <p style="font-weight: 700; margin-bottom: 4px;">Sugerencia segura de la IA:</p>
+                    <p id="vista-sugerencia"></p>
+                </div>
+
+                <div style="text-align: right; border-top: 1px solid #c7d2fe; margin-top: 24px; padding-top: 16px;">
+                    <button id="btn-accion-resolver" onclick="iniciarResolucion()" class="btn-danger" style="background-color: #f0fdf4; color: #16a34a; border-color: #bbf7d0;">
+                        Marcar Falla como Resuelta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal-confirmacion" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-icon" style="background-color: #fef3c7; color: #d97706;">?</div>
+            <h3 class="modal-title">¿Confirmar Resolución?</h3>
+            <p class="modal-text">¿Está seguro de que desea marcar el ticket <strong id="confirm-ticket-id"></strong> como RESUELTO?</p>
+            <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px;">
+                <button onclick="cerrarModalConfirmacion()" class="btn-secondary" style="width: auto; padding: 10px 24px;">Cancelar</button>
+                <button onclick="ejecutarResolucion()" class="btn-primary" style="width: auto; background-color: #d97706; padding: 10px 24px;">Sí, Resolver</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-exito" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-icon">✓</div>
+            <h3 class="modal-title">¡Falla Resuelta!</h3>
+            <p class="modal-text">El incidente ha sido actualizado correctamente en la base de datos.</p>
+            <div style="display: flex; justify-content: flex-end; gap: 16px; border-top: 1px solid var(--border-color); margin-top: 24px; padding-top: 16px;">
+                    <button onclick="window.print()" class="btn-secondary" style="background-color: #e2e8f0; color: #1e293b; margin: 0;">
+                        🖨️ Generar Reporte PDF
+                    </button>
+                    <button id="btn-accion-resolver" onclick="iniciarResolucion()" class="btn-danger" style="background-color: #f0fdf4; color: #16a34a; border-color: #bbf7d0; margin-top: 0;">
+                        ✅ Marcar Falla como Resuelta
+                    </button>
+                </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
