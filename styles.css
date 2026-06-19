@@ -441,12 +441,16 @@ body.dark-theme .sidebar-nav .nav-item.active {
     color: #e3e3e3;
 }
 
+/* FIX: Textos de la Tabla en Dashboard */
 body.dark-theme th { background-color: #131314; color: #e3e3e3; border-color: #444746; }
-body.dark-theme td { border-color: #444746; color: #c4c7c5; }
+body.dark-theme td { border-color: #444746; color: #e3e3e3; } 
+body.dark-theme .data-table td.ticket-title { color: #ffffff; } /* Asunto en blanco puro */
 
-/* FIX: Efecto Hover en las filas de la tabla en Modo Oscuro */
-body.dark-theme .data-table tbody tr:hover td {
-    background-color: #282a2c; 
+body.dark-theme .data-table tbody tr:hover {
+    background-color: #282a2c !important; 
+}
+body.dark-theme .data-table tbody tr {
+    background-color: transparent !important; 
 }
 
 body.dark-theme .form-input, 
@@ -463,7 +467,16 @@ body.dark-theme .modal-overlay { background-color: rgba(0, 0, 0, 0.8); }
 body.dark-theme .modal-title, body.dark-theme h2, body.dark-theme h3 { color: #e3e3e3; }
 body.dark-theme .modal-text { color: #c4c7c5; }
 
-/* FIX: Badges e Iconos adaptados al Modo Oscuro (Colores Pastel Profundos) */
+/* FIX: Cajas de contenido y Títulos en Detalles del Ticket */
+body.dark-theme .ticket-desc-box,
+body.dark-theme .ai-suggestion-inner {
+    background-color: #131314; /* Fondo hundido para hacer contraste con la tarjeta */
+    border-color: #444746;
+    color: #e3e3e3;
+}
+body.dark-theme .ai-title { color: #a8c7fa; } /* Azul claro pastel para el título de IA */
+
+/* Badges e Iconos adaptados al Modo Oscuro */
 body.dark-theme .badge-hardware { background-color: #3f1d1d; color: #fca5a5; border-color: #7f1d1d; }
 body.dark-theme .badge-software { background-color: #162a4f; color: #93c5fd; border-color: #1e3a8a; }
 body.dark-theme .badge-redes { background-color: #143621; color: #86efac; border-color: #14532d; }
@@ -472,7 +485,7 @@ body.dark-theme .badge-manual { background-color: #333639; color: #e3e3e3; borde
 body.dark-theme .status-tag { background-color: #422006; color: #fcd34d; border-color: #78350f; }
 body.dark-theme .status-tag.resuelto { background-color: #064e3b; color: #86efac; border-color: #14532d; }
 
-/* --- 13. Botón Toggle Neumórfico (Estilo Video CodeGlitch) --- */
+/* --- 13. Botón Toggle Neumórfico --- */
 .header-actions { display: flex; align-items: center; gap: 20px; }
 
 .toggle-container {
@@ -495,14 +508,16 @@ body.dark-theme .status-tag.resuelto { background-color: #064e3b; color: #86efac
     transition: left 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* FIX: Contraste del Toggle en Modo Oscuro */
 body.dark-theme .toggle-container {
     background-color: #1e1f20;
-    box-shadow: inset 3px 3px 5px #111111, inset -3px -3px 5px #2b2b2b;
+    box-shadow: inset 3px 3px 5px #0a0a0a, inset -3px -3px 5px #323436; /* Sombras más ajustadas */
 }
 
 body.dark-theme .toggle-circle {
-    left: 30px; background-color: #1e1f20;
-    box-shadow: 2px 2px 5px #111111, -2px -2px 5px #2b2b2b;
+    left: 30px; 
+    background-color: #5f6368; /* Botón en gris medio para que destaque físicamente del fondo */
+    box-shadow: 2px 2px 5px #0a0a0a, -2px -2px 5px #323436;
 }
 
 /* --- 14. Modo Impresión (Reporte Digital PDF) --- */
